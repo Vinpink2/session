@@ -1,5 +1,5 @@
 {
-    "description": "VolTah-session",
+    "description": "june-session",
     "main": "./voltah.js",
   "engines" : { 
     "npm" : ">=9.7.2",
