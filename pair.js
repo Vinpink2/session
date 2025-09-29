@@ -58,35 +58,10 @@ router.get('/', async (req, res) => {
         
 ╔════════════════════◇
 ║『 SESSION CONNECTED』
-║ ✨VolTah-XMD🔷
-║ ✨Giddy Tennor 🔷
-╚════════════════════╝
-
-
----
-
-╔════════════════════◇
-║『 YOU'VE CHOSEN VolTah XMD 』
-║ -Set the session ID in Heroku:
-║ - SESSION_ID: 
-╚════════════════════╝
-╔════════════════════◇
-║ 『••• _V𝗶𝘀𝗶𝘁 𝗙𝗼𝗿_H𝗲𝗹𝗽 •••』
-║❍ 𝐘𝐨𝐮𝐭𝐮𝐛𝐞: youtube.com/@giddynokia
-║❍ 𝐎𝐰𝐧𝐞𝐫: 254756182478
-║❍ 𝐑𝐞𝐩𝐨: https://github.com/Tennor-modz/Bellah-Xmd 
-║❍ 𝐖𝐚𝐆𝗿𝐨𝐮𝐩: https://chat.whatsapp.com/CzFlFQrkdzxFw0pxCBYM7H
-║❍ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: https://whatsapp.com/channel/0029VaPZWbY1iUxVVRIIOm0D
-║❍ 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦: _https://www.instagram.com/giddy_tennor_?igsh=YzZ0NDRoaXFxM2Zk
-║ ☬ ☬ ☬ ☬
-╚═════════════════════╝
-𒂀 Enjoy VolTah MD
-
-
----
-
-Don't Forget To Give Star⭐ To My Repo
-______________________________`;
+║ 🟦 BOT: JUNE MD
+║ 🟦 TYPE: BASE64 
+╚════════════════════◇
+`;
 
                     await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: Toxic_MD_TEXT }, { quoted: session });
 
