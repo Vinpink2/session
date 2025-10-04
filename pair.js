@@ -53,7 +53,7 @@ router.get('/', async (req, res) => {
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                     await delay(6000);
                     let b64data = Buffer.from(data).toString('base64');
-                    let session = await supreme.sendMessage(supreme.user.id, { text: 'trashcore~' + b64data });
+                    let session = await supreme.sendMessage(supreme.user.id, { text: 'JUNE-MD:~' + b64data });
 
                     let supreme_TEXT = `
         
