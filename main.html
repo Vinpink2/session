@@ -1,500 +1,507 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Mbuvi Sessions</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="June md Bot" />
+  <title>JUNE-MD SESSIONS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+    :root {
+      --primary: linear-gradient(135deg, #1E90FF, #800000);
+      --bg: #000000;
+      --glass: rgba(255, 255, 255, 0.05);
+      --text: #ffffff;
+      --muted: #228B22;
+      --highlight: #696969;
+      --radius: 16px;
+      --blur: 12px;
+      --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --glow: 0 0 15px rgba(0, 212, 255, 0.3);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: #0d0d0d;
-      color: #00ffcc;
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
       min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* Live Cyber-Grid Background */
-    .cyber-grid {
-      position: fixed;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: #0d0d0d;
-      overflow: hidden;
+      z-index: 100;
     }
 
-    .cyber-grid::before,
-    .cyber-grid::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 50px,
-        rgba(0, 255, 204, 0.1) 50px,
-        rgba(0, 255, 204, 0.1) 52px
-      );
-      animation: gridMove 20s linear infinite;
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: var(--glow);
     }
 
-    .cyber-grid::after {
-      background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 50px,
-        rgba(0, 255, 204, 0.1) 50px,
-        rgba(0, 255, 204, 0.1) 52px
-      );
+    .status {
+      display: flex;
+      gap: 1.5rem;
     }
 
-    @keyframes gridMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-100px); }
+    .status-item {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
     }
 
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+    .status-item:hover {
+      background: rgba(0, 212, 255, 0.1);
+      border-color: var(--highlight);
+    }
+
+    .status-item i {
+      color: var(--highlight);
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 40px;
-      position: relative;
-      z-index: 1;
-      margin-top: 60px; /* Space for fixed ticker */
+      gap: 1.5rem;
     }
 
-    /* News Ticker */
-    .news-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    .news-container .title {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 40%;
-      background: linear-gradient(90deg, #ff2e63, #7209b7);
-      padding: 10px 24px;
-      color: #fff;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      z-index: 1001;
-    }
-
-    .news-container .ticker {
-      width: 100%;
-      overflow: hidden;
-      background: rgba(0, 0, 0, 0.9);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      margin-left: 40%; /* Align ticker content to right of title */
-    }
-
-    .news-container ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 10px 0;
-      animation: scroll 20s infinite linear;
-    }
-
-    .news-container ul li {
-      white-space: nowrap;
-      padding: 0 24px;
-      color: #00ffcc;
-      font-size: 1rem;
-      text-shadow: 0 0 5px #00ffcc;
-      position: relative;
-    }
-
-    .news-container ul li::after {
-      content: "";
-      width: 1px;
-      height: 100%;
-      background: #00ffcc;
-      position: absolute;
-      top: 0;
-      right: 0;
-      opacity: 0.5;
-    }
-
-    .news-container ul li:last-child::after {
-      display: none;
-    }
-
-    @keyframes scroll {
-      from { transform: translateX(100%); }
-      to { transform: translateX(-100%); }
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-      background: rgba(0, 0, 0, 0.7);
-      border: 2px solid #00ffcc;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-    }
-
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      color: #ff2e63;
-      text-shadow: 0 0 10px #ff2e63;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #00ffcc;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Features Section */
-    .features {
+    .tools {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      width: 90%;
+      max-width: 1000px;
     }
 
-    .feature-card {
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid #00ffcc;
-      border-radius: 8px;
-      padding: 20px;
+    .tool {
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur));
+      border-radius: var(--radius);
+      padding: 2rem;
       text-align: center;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-    }
-
-    .feature-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
-      color: #ff2e63;
-      margin-bottom: 10px;
-    }
-
-    .feature-card p {
-      font-size: 1rem;
-      color: #00ffcc;
-      flex-grow: 1;
-    }
-
-    .feature-card .btn {
-      width: 100%;
-      padding: 0.8em;
-      font-size: 1rem;
-    }
-
-    /* About Section */
-    .about {
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid #00ffcc;
-      border-radius: 8px;
-      padding: 30px;
-      text-align: center;
-      width: 100%;
-    }
-
-    .about h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      color: #ff2e63;
-      margin-bottom: 15px;
-    }
-
-    .about p {
-      font-size: 1.1rem;
-      color: #00ffcc;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* Contact Section */
-    .contact {
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid #00ffcc;
-      border-radius: 8px;
-      padding: 30px;
-      text-align: center;
-      width: 100%;
-    }
-
-    .contact h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      color: #ff2e63;
-      margin-bottom: 15px;
-    }
-
-    .contact p {
-      font-size: 1.1rem;
-      color: #00ffcc;
-      margin-bottom: 20px;
-    }
-
-    /* Buttons */
-    .btn {
-      background: transparent;
-      border: 2px solid #00ffcc;
-      border-radius: 8px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+      transition: var(--transition);
       cursor: pointer;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      color: #00ffcc;
-      text-shadow: 0 0 5px #00ffcc;
-      transition: all 0.3s ease;
+      border: 0.5px solid rgba(205, 205, 205, 0.05);
       position: relative;
       overflow: hidden;
     }
 
-    .btn::before {
+    .tool::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.3), transparent);
-      transition: all 0.5s ease;
-      z-index: -1;
+      top: -25%;
+      left: -25%;
+      width: 75%;
+      height: 75%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: var(--transition);
     }
 
-    .btn:hover::before {
-      left: 100%;
+    .tool:hover {
+      transform: translateY(-8px);
+      background: rgba(205, 205, 205, 0.08);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), var(--glow);
+      border-color: rgba(0, 212, 255, 0.2);
     }
 
-    .btn:hover {
-      background: rgba(0, 255, 204, 0.2);
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-      color: #fff;
-      border-color: #fff;
+    .tool:hover::before {
+      opacity: 1;
     }
 
-    .btn:active {
-      transform: scale(0.95);
-      filter: brightness(0.8);
+    .tool i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: var(--transition);
     }
 
-    /* Footer */
-    .footer {
-      margin-top: 40px;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid #00ffcc;
-      border-radius: 8px;
-      text-align: center;
-      color: #00ffcc;
-      font-family: 'Montserrat', sans-serif;
+    .tool h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .muted {
+      color: var(--muted);
       font-size: 0.9rem;
-      text-shadow: 0 0 5px #00ffcc;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      text-align: center;
+      max-width: 800px;
+      padding: 1rem;
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .note a {
+      color: var(--highlight);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .note a:hover {
+      text-shadow: 0 0 10px var(--highlight);
+    }
+
+    .music-player {
       width: 100%;
+      max-width: 1000px;
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(var(--blur));
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .footer b {
-      color: #ff2e63;
+    .music-player h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
 
-    .footer .social-links {
-      margin-top: 15px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-width: 300px;
-      margin-left: auto;
-      margin-right: auto;
+    .track {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition);
     }
 
-    .footer .social-links a {
-      color: #00ffcc;
-      font-size: 1.5rem;
-      transition: all 0.3s ease;
+    .track:hover {
+      background: rgba(0, 0, 0, 0.4);
+      border-color: rgba(0, 212, 255, 0.2);
     }
 
-    .footer .social-links a:hover {
-      color: #ff2e63;
-      text-shadow: 0 0 10px #ff2e63;
+    .progress {
+      width: 300px;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
     }
 
-    /* Responsive Design */
+    .progress-fill {
+      width: 0%;
+      background: linear-gradient(90deg, #FF4500, #000000);
+      height: 100%;
+      transition: width 0.1s linear;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -2px;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      transform: translateX(50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .track:hover .progress-fill::after {
+      opacity: 1;
+    }
+
+    button {
+      background: rgba(0, 0, 0, 0.3);
+      border: 0.5px solid var(--highlight);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      color: blue;
+      cursor: pointer;
+      font-weight: 500;
+      font-family: 'JetBrains Mono', monospace;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    button:hover {
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-width: 50px;
+      text-align: center;
+    }
+
     @media (max-width: 768px) {
-      .container {
-        padding: 10px 10px; /* Add left/right spacing for boxes */
-        margin-top: 80px; /* Adjust for mobile ticker */
+      header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
       }
 
-      .news-container .title {
-        width: 50%;
-        font-size: 0.7rem; /* Smaller font for one line */
-        padding: 8px 15px;
+      main {
+        padding: 1rem;
       }
 
-      .news-container .ticker {
-        margin-left: 50%;
-      }
-
-      .news-container ul li {
-        font-size: 0.8rem;
-        padding: 8px 15px;
-      }
-
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .features {
+      .tools {
         grid-template-columns: 1fr;
       }
 
-      .feature-card h3 {
-        font-size: 1.3rem;
+      .track {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
       }
 
-      .about h2,
-      .contact h2 {
-        font-size: 1.5rem;
+      .progress {
+        width: 100%;
       }
 
-      .about p,
-      .contact p {
-        font-size: 1rem;
-      }
-
-      .feature-card .btn {
-        font-size: 0.9rem;
-        padding: 0.6em;
-      }
-
-      .footer .social-links {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+      .controls {
+        width: 100%;
+        justify-content: space-between;
       }
     }
   </style>
 </head>
 <body>
-  <div class="cyber-grid"></div>
-  <div class="news-container">
-    <div class="title">Hello Tech Enthusiast</div>
-    <div class="ticker">
-      <ul>
-        <li>welcome to VolTah Xmd sessions!</li>
-        <li>Here you will get session ids for your VolTah bot</li>
-        <li>Bellah Xmd</li>
-      </ul>
+  <header>
+    <div class="logo">June md</div>
+    <div class="status">
+      <div class="status-item"><i class="fas fa-bolt"></i> <span id="battery">--%</span></div>
+      <div class="status-item"><i class="fas fa-wifi"></i> <span id="ip">Loading...</span></div>
     </div>
-  </div>
+  </header>
 
-  <div class="container">
-    <!-- Hero Section -->
-    <div class="hero">
-      <h1>Welcome to our session Centre</h1>
-      <p>Your one-stop hub for WhatsApp bot sessions. Get your QR or pair code, deploy VolTah XMD, and join the tech revolution!</p>
-    </div>
-
-    <!-- Features Section -->
-    <div class="features">
-      <div class="feature-card">
-        <h3>QR Code Pairing</h3>
-        <p>Scan a QR code to instantly connect your WhatsApp bot with a secure session ID.</p>
-        <button onclick="window.location.href='/qr'" class="btn">Get QR Code</button>
+  <main>
+    <div class="tools">
+      <div class="tool" onclick="window.open(`/pair`)">
+        <i class="fas fa-link"></i>
+        <h3>PAIR CODE</h3>
+        <p class="muted">Connect by pair</p>
       </div>
-      <div class="feature-card">
-        <h3>Pair Code</h3>
-        <p>Enter a phone number and get a code to pair your bot without scanning.</p>
-        <button onclick="window.location.href='/pair'" class="btn">Get Pair Code</button>
+      <div class="tool" onclick="window.open(`/qr`)">
+        <i class="fas fa-qrcode"></i>
+        <h3>QR CODE</h3>
+        <p class="muted">connection by Qr</p>
       </div>
-      <div class="feature-card">
-        <h3>Deploy VolTah XMD</h3>
-        <p>Deploy your own bot for free here.</p>
-        <button onclick="window.location.href='https://deploy.mbuvitech.site/'" class="btn">Deploy Now</button>
+      <div class="tool" onclick="window.open(`https://github.com/vinpink2/June-md`)">
+        <i class="fab fa-github"></i>
+        <h3>June md Repo</h3>
+        <p class="muted">Bot Repo</p>
+      </div>
+      <div class="tool" onclick="window.open(`wa.me/254792021944`)">
+        <i class="fab fa-page"></i>
+        <h3>Support Owner</h3>
+        <p class="muted">WatsApp page</p>
+      </div>
+      <div class="tool" onclick="window.open(`https://wa.me/254792021944?text=hellow sir`)">
+        <i class="fas fa-headset"></i>
+        <h3>CONTACT OWNER</h3>
+        <p class="muted">Developer Support</p>
+      </div>
+      <div class="tool" onclick="window.open(`https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k`)">
+        <i class="fas fa-broadcast-tower"></i>
+        <h3>WA CHANNEL</h3>
+        <p class="muted">Bots Update Here</p>
       </div>
     </div>
 
-    <!-- About Section -->
-    <div class="about">
-      <h2>About Us</h2>
-      <p>We’re a crew of tech enthusiasts building tools for WhatsApp bot creators. Our mission? Make bot setup fast, secure, and awesome. Join the VolTah XMD community!</p>
+    <div class="note">
+      If you encounter any issue 🌙
     </div>
 
-    <!-- Contact Section -->
-    <div class="contact">
-      <h2>Get in Touch</h2>
-      <p>Hit us up on SMS, WhatsApp, or Telegram for support, collabs, or just to talk tech.</p>
-      <!-- GetButton.io widget will appear here -->
+    <div class="music-player">
+      <h2>Now Playing</h2>
+      <div class="track">
+        <div>
+          <strong>June Songs</strong>
+          <div class="muted">June md</div>
+        </div>
+        <div class="controls">
+          <button onclick="togglePlay('audio1')"><i class="fas fa-play"></i> PLAY</button>
+          <div class="progress"><div class="progress-fill" id="progress1"></div></div>
+          <span class="time" id="time1">0:00</span>
+        </div>
+        <audio id="audio1" src="https://files.catbox.moe/8vkpwp.mp3"></audio>
+      </div>
     </div>
-  </div>
+  </main>
+  <script>
+    // Smooth animations
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+      }, 100);
+    });
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>©Giddy Tennor</p>
-    <p>Contact <b>Giddy Tennor</b></p>
-    <div class="social-links">
-      <a href="https://youtube.com/@giddynokia" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.instagram.com/giddy_tennor_?igsh=YzZ0NDRoaXFxM2Zk" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://t.me/tennormodzcoder" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://github.com/Tennor-modz" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-  </div>
-
-  <!-- GetButton.io widget -->
-  <script type="text/javascript">
-    (function () {
-      var options = {
-        sms: "+254787909276",
-        sms_color: "#129BF4",
-        whatsapp: "+254756182478",
-        telegram: "@giddy_tennor",
-        call_to_action: "Message us",
-        button_color: "#FF318E",
-        position: "left",
-        order: "sms,whatsapp,telegram",
-        pre_filled_message: "hey Giddy Tennor i have come with greetings from your session",
+    // Update clock in title
+    const updateTime = () => {
+      const update = () => {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
+        document.title = `Supreme-Time | ${timeStr}`;
       };
-      var proto = 'https:', host = "getbutton.io", url = proto + '//static.' + host;
-      var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-      s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-      var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-    })();
+      update();
+      setInterval(update, 1000);
+    }
+
+    // Battery status
+    const updateBattery = async () => {
+      if (navigator.getBattery) {
+        try {
+          const battery = await navigator.getBattery();
+          const setBattery = () => {
+            const batteryPercent = Math.round(battery.level * 100);
+            const batteryElement = document.getElementById('battery');
+            batteryElement.innerText = `${batteryPercent}%`;
+
+            // Add battery icon based on level
+            let batteryIcon = 'fa-bolt';
+            if (batteryPercent <= 20) batteryIcon = 'fa-battery-quarter';
+            else if (batteryPercent <= 50) batteryIcon = 'fa-battery-half';
+            else if (batteryPercent <= 80) batteryIcon = 'fa-battery-three-quarters';
+            else if (batteryPercent <= 100) batteryIcon = 'fa-battery-full';
+
+            batteryElement.previousElementSibling.className = `fas ${batteryIcon}`;
+          };
+
+          battery.addEventListener('levelchange', setBattery);
+          battery.addEventListener('chargingchange', setBattery);
+          setBattery();
+        } catch (error) {
+          console.error('Battery API error:', error);
+        }
+      }
+    }
+
+    // Music player controls
+    const togglePlay = (id) => {
+      const audio = document.getElementById(id);
+      const progress = document.getElementById('progress1');
+      const time = document.getElementById('time1');
+      const button = document.querySelector('button[onclick*="'+id+'"]');
+
+      if (audio.paused) {
+        audio.play();
+        button.innerHTML = '<i class="fas fa-pause"></i> PAUSE';
+
+        audio.ontimeupdate = () => {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progress.style.width = percent + '%';
+
+          const minutes = Math.floor(audio.currentTime / 60);
+          const seconds = Math.floor(audio.currentTime % 60);
+          time.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
+        };
+
+        audio.onended = () => {
+          progress.style.width = '0%';
+          time.textContent = '0:00';
+          button.innerHTML = '<i class="fas fa-play"></i> PLAY';
+        };
+      } else {
+        audio.pause();
+        button.innerHTML = '<i class="fas fa-play"></i> PLAY';
+      }
+    }
+
+    // IP address fetch
+    const fetchIP = async () => {
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        document.getElementById('ip').textContent = data.ip;
+      } catch {
+        document.getElementById('ip').textContent = 'Offline';
+      }
+    }
+
+    // Tool hover effects
+    const setupToolHover = () => {
+      const tools = document.querySelectorAll('.tool');
+      tools.forEach(tool => {
+        tool.addEventListener('mouseenter', () => {
+          tool.style.transform = 'translateY(-8px)';
+        });
+        tool.addEventListener('mouseleave', () => {
+          tool.style.transform = 'translateY(0)';
+        });
+      });
+    }
+
+    // Initialize everything
+    const init = () => {
+      updateTime();
+      updateBattery();
+      fetchIP();
+      setupToolHover();
+    };
+
+    window.addEventListener('load', init);
   </script>
-  <!-- /GetButton.io widget -->
-</body>
+ </body>
 </html>

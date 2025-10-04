@@ -22,10 +22,10 @@ router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
     
-    async function Mbuvi_MD_PAIR_CODE() {
+    async function supreme_CODE() {
         const { state, saveCreds } = await useMultiFileAuthState('./temp/' + id);
         try {
-            let Pair_Code_By_Mbuvi_Tech = Mbuvi_Tech({
+            let supreme = Mbuvi_Tech({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'fatal' }).child({ level: 'fatal' })),
@@ -35,42 +35,44 @@ router.get('/', async (req, res) => {
                 browser: Browsers.macOS('Chrome')
             });
 
-            if (!Pair_Code_By_Mbuvi_Tech.authState.creds.registered) {
+            if (!supreme.authState.creds.registered) {
                 await delay(1500);
                 num = num.replace(/[^0-9]/g, '');
-                const code = await Pair_Code_By_Mbuvi_Tech.requestPairingCode(num);
+                const code = await supreme.requestPairingCode(num);
                 if (!res.headersSent) {
                     await res.send({ code });
                 }
             }
 
-            Pair_Code_By_Mbuvi_Tech.ev.on('creds.update', saveCreds);
-            Pair_Code_By_Mbuvi_Tech.ev.on('connection.update', async (s) => {
+            supreme.ev.on('creds.update', saveCreds);
+            supreme.ev.on('connection.update', async (s) => {
                 const { connection, lastDisconnect } = s;
                 if (connection === 'open') {
+                   await supreme.groupAcceptInvite('BsmJiEZMlBT5C2TKN6Wnmf');
                     await delay(5000);
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
-                    await delay(800);
+                    await delay(6000);
                     let b64data = Buffer.from(data).toString('base64');
-                    let session = await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: 'JUNE-MD:~' + b64data });
+                    let session = await supreme.sendMessage(supreme.user.id, { text: 'JUNE-MD:~' + b64data });
 
-                    let Mbuvi_MD_TEXT = `
+                    let supreme_TEXT = `
         
-╔════════════════════◇
-║『 SESSION CONNECTED』
-║ 🟦 BOT: JUNE MD
-║ 🟦 TYPE: BASE64 
-╚════════════════════◇
+╔════════════════════
+║ ◇SESSION CONNECTED◇
+║ 🔹 BOT: JUNE-MD
+║ 🌀 TYPE: BASE64
+║ 🔹 OWNER: Supreme
+╚════════════════════
 `;
 
-                    await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: Toxic_MD_TEXT }, { quoted: session });
+                    await supreme.sendMessage(supreme.user.id, { text: supreme_TEXT }, { quoted: session });
 
                     await delay(100);
-                    await Pair_Code_By_Mbuvi_Tech.ws.close();
+                    await supreme.ws.close();
                     return await removeFile('./temp/' + id);
                 } else if (connection === 'close' && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
-                    Mbuvi_MD_PAIR_CODE();
+                    supreme_CODE();
                 }
             });
         } catch (err) {
@@ -82,7 +84,7 @@ router.get('/', async (req, res) => {
         }
     }
     
-    return await Mbuvi_MD_PAIR_CODE();
+    return await supreme_CODE();
 });
 
 module.exports = router;

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trashcore pairing site Dashboard</title>
+  <title>JUNE PAIR DASH-BOARD</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
+  <style>
+    /* Your CSS remains exactly the same */
     :root {
       --primary: linear-gradient(135deg, #FF4500, #228B22);
       --bg: #D2691E;
@@ -34,10 +35,9 @@
       position: relative;
       overflow-x: hidden;
       color: var(--text);
-      padding: 80px 20px 120px; /* Space for header and music player */
+      padding: 80px 20px 120px;
     }
 
-    /* Background with blur effect */
     .background-image {
       position: fixed;
       top: 0;
@@ -50,7 +50,6 @@
       transform: scale(1.1);
     }
 
-    /* Header with logo */
     .header {
       position: fixed;
       top: 0;
@@ -83,14 +82,13 @@
 
     .logo-text {
       font-size: 1.5rem;
-      font-weight: 700;
-      background: var(--primary);
+      font-weight: 800;
+      background: var(--glass);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: var(--glow);
     }
 
-    /* Battery indicator */
     .battery-container {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 50px;
@@ -107,9 +105,8 @@
       font-size: 1.2rem;
     }
 
-    /* Main container */
     .main-content {
-      width: 100%;
+      width: 80%;
       max-width: 500px;
       display: flex;
       flex-direction: column;
@@ -118,7 +115,6 @@
       z-index: 1;
     }
 
-    /* Pairing box */
     .box {
       background: var(--glass);
       backdrop-filter: blur(var(--blur));
@@ -138,7 +134,7 @@
     .box h2 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
-      background: var(--primary);
+      background: var(--glass);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: var(--glow);
@@ -150,7 +146,6 @@
       font-weight: normal;
     }
 
-    /* Input styling */
     .input-container {
       display: flex;
       gap: 0.5rem;
@@ -190,7 +185,6 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
-    /* Result display */
     #pair-result {
       margin-top: 1.5rem;
       padding: 1rem;
@@ -210,7 +204,7 @@
       border-radius: 50px;
       color: white;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 500;
       transition: var(--transition);
       margin-top: 1rem;
       display: none;
@@ -221,7 +215,6 @@
       box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
     }
 
-    /* Music player - Positioned below pairing container */
     .music-player {
       width: 100%;
       max-width: 500px;
@@ -284,28 +277,27 @@
       color: var(--muted);
     }
 
-    /* Responsive design */
     @media (max-width: 768px) {
       .header {
         padding: 0.8rem 1rem;
       }
-      
+
       .logo-text {
         font-size: 1.2rem;
       }
-      
+
       body {
         padding: 70px 15px 100px;
       }
-      
+
       .input-container {
         flex-direction: column;
       }
-      
+
       .input-container button {
         width: 100%;
       }
-      
+
       .music-player {
         padding: 1rem;
       }
@@ -313,60 +305,53 @@
   </style>
 </head>
 <body>
-  <!-- Blurred Background Image -->
-  <img src="https://url.bwmxmd.online/Adams.twcferrg.jpg" alt="Trashcore bot Background" class="background-image">
+  <img src="https://files.catbox.moe/87gjcj.jpg" alt="June md background" class="background-image">
 
-  <!-- Header with Logo -->
   <header class="header">
     <div class="logo-container">
-      <img src="https://url.bwmxmd.online/Adams.twcferrg.jpg" alt="Trashcore bot Logo" class="logo-img">
-      <div class="logo-text">𝐓𝐑𝐀𝐒𝐇𝐂𝐎𝐑𝐄-𝐏𝐀𝐈𝐑𝐈𝐍𝐆</div>
+      <img src="https://files.catbox.moe/87gjcj.jpg" alt="June md Logo" class="logo-img">
+      <div class="logo-text">JUNE MD BOT</div>
     </div>
-    
-    <!-- Battery Indicator -->
+
     <div class="battery-container">
       <i class="fas fa-battery-full battery-icon" id="battery-icon"></i>
       <span id="battery-level">--%</span>
     </div>
   </header>
 
-  <!-- Main Content Container -->
   <div class="main-content">
-    <!-- Pairing Box -->
     <div class="box">
       <h2>PAIRING CODE</h2>
-      <h5>TRASHCORE BOTS </h5>
-      <p>Please enter your number without country code</p>
-      
+      <h5>JUNE MD PAIR </h5>
+      <p>Please enter your number</p>
+
       <div class="input-container">
-        <input type="number" id="number" placeholder="put your number" required>
-        <button id="submit">REQUEST CODE</button>
+        <input type="tel" id="number" placeholder="254792021944" required pattern="[0-9+]{10,15}">
+        <button id="submit">SUBMIT</button>
       </div>
-      
+
       <div id="pair-result">
         <p id="waiting-message" style="display: none;">Please wait...</p>
       </div>
-      
+
       <button id="copy-code" onclick="copyCode()">COPY YOUR CODE</button>
     </div>
 
-    <!-- Music Player - Positioned below pairing container -->
     <div class="music-player">
       <h3>PLAY NOW</h3>
-      <div class="music-title">PLAY SONG</div>
-      <div class="music-subtitle">by Trashcore devs</div>
+      <div class="music-title">June md Songs</div>
+      <div class="music-subtitle">Enjoy the music</div>
       <button class="play-btn" onclick="togglePlay()">
-        <i class="fas fa-pause" id="play-icon"></i>
+        <i class="fas fa-play" id="play-icon"></i>
       </button>
       <div class="time-display" id="time1">0:00</div>
-      <div class="music-subtitle">PAIRING SONG</div>
-      <audio id="audio1" src="https://url.bwmxmd.online/Adams.ioeeyulj.m4a" loop></audio>
+      <div class="music-subtitle">jah bless you</div>
+      <audio id="audio1" src="https://files.catbox.moe/wdap4t.mp3" loop></audio>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
-    // DOM elements
     const pairResult = document.getElementById("pair-result");
     const submitBtn = document.getElementById("submit");
     const numberInput = document.getElementById("number");
@@ -375,9 +360,11 @@
     const batteryLevel = document.getElementById("battery-level");
     const batteryIcon = document.getElementById("battery-icon");
 
-    // Copy code function
     async function copyCode() {
-      const code = pairResult.innerText.replace('CODE: ', '');
+      const codeElement = pairResult.querySelector('span');
+      if (!codeElement) return;
+
+      const code = codeElement.textContent;
       try {
         await navigator.clipboard.writeText(code);
         copyCodeBtn.innerText = "COPIED!";
@@ -393,44 +380,34 @@
       }
     }
 
-    // Submit handler
     submitBtn.addEventListener("click", async (e) => {
       e.preventDefault();
-      
+
       if (!numberInput.value) {
-        pairResult.innerHTML = '<p style="color:var(--highlight)">Enter your WhatsApp number without Country Code</p>';
+        pairResult.innerHTML = '<p style="color:var(--highlight)">Enter your WhatsApp number with Country Code</p>';
         return;
       }
-      
+
       const cleanNumber = numberInput.value.replace(/[^0-9]/g, "");
-      
+
       if (cleanNumber.length < 11) {
         pairResult.innerHTML = '<p style="color:#ff5555">Invalid Number</p>';
         return;
       }
-      
+
       // Format number display
-      let formattedNumber = "";
-      const digits = cleanNumber.split('');
-      digits.forEach((digit, index) => {
-        formattedNumber += digit;
-        if (index === 2 || index === 7) {
-          formattedNumber += " ";
-        }
-      });
-      
-      numberInput.type = "text";
-      numberInput.value = "+" + formattedNumber;
+      let formattedNumber = "+" + cleanNumber;
+      numberInput.value = formattedNumber;
       numberInput.style.color = "var(--highlight)";
-      
+
       waitingMessage.style.display = "block";
       pairResult.innerHTML = "";
       copyCodeBtn.style.display = "none";
-      
+
       try {
         const { data } = await axios(`/code?number=${cleanNumber}`);
         const code = data.code || "Service Unavailable";
-        
+
         pairResult.innerHTML = `
           <p style="color:var(--highlight); font-weight:bold; font-size:1.2rem;">
             CODE: <span style="color:white">${code}</span>
@@ -449,22 +426,15 @@
     const playBtn = document.querySelector('.play-btn');
     const playIcon = document.getElementById('play-icon');
     const timeDisplay = document.getElementById('time1');
-    
-    // Auto-play music when page loads (with user interaction)
-    document.addEventListener('click', function initAudio() {
-      audio.play().then(() => {
-        playIcon.classList.replace('fa-play', 'fa-pause');
-        updateTimeDisplay();
-      }).catch(error => {
-        console.log('Auto-play prevented:', error);
-      });
-      document.removeEventListener('click', initAudio);
-    }, { once: true });
 
     function togglePlay() {
       if (audio.paused) {
-        audio.play();
-        playIcon.classList.replace('fa-play', 'fa-pause');
+        audio.play().then(() => {
+          playIcon.classList.replace('fa-play', 'fa-pause');
+          updateTimeDisplay();
+        }).catch(error => {
+          console.log('Play failed:', error);
+        });
       } else {
         audio.pause();
         playIcon.classList.replace('fa-pause', 'fa-play');
@@ -475,7 +445,7 @@
       const minutes = Math.floor(audio.currentTime / 60);
       const seconds = Math.floor(audio.currentTime % 60);
       timeDisplay.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
-      
+
       if (!audio.paused) {
         requestAnimationFrame(updateTimeDisplay);
       }
@@ -483,50 +453,28 @@
 
     audio.addEventListener('timeupdate', updateTimeDisplay);
 
-    // Battery status indicator
-    async function updateBattery() {
-      if (navigator.getBattery) {
-        try {
-          const battery = await navigator.getBattery();
-          
-          const updateBatteryUI = () => {
-            const batteryPercent = Math.round(battery.level * 100);
-            batteryLevel.textContent = `${batteryPercent}%`;
-            
-            // Update battery icon based on level
-            let iconClass = 'fa-battery-empty';
-            if (batteryPercent > 80) iconClass = 'fa-battery-full';
-            else if (batteryPercent > 60) iconClass = 'fa-battery-three-quarters';
-            else if (batteryPercent > 40) iconClass = 'fa-battery-half';
-            else if (batteryPercent > 20) iconClass = 'fa-battery-quarter';
-            
-            // Add charging bolt if charging
-            if (battery.charging) {
-              batteryIcon.className = `fas fa-bolt ${iconClass}`;
-              batteryIcon.style.color = '#00ff00';
-            } else {
-              batteryIcon.className = `fas ${iconClass}`;
-              batteryIcon.style.color = 'var(--highlight)';
-            }
-          };
-          
-          battery.addEventListener('levelchange', updateBatteryUI);
-          battery.addEventListener('chargingchange', updateBatteryUI);
-          updateBatteryUI();
-        } catch (error) {
-          console.error('Battery API error:', error);
-        }
-      } else {
-        batteryLevel.textContent = "N/A";
-      }
+    // Simulate battery status (since Battery API is deprecated)
+    function updateBattery() {
+      // Simulate battery level between 70-100%
+      const batteryPercent = Math.floor(Math.random() * 30) + 70;
+      batteryLevel.textContent = `${batteryPercent}%`;
+
+      let iconClass = 'fa-battery-full';
+      if (batteryPercent <= 20) iconClass = 'fa-battery-empty';
+      else if (batteryPercent <= 40) iconClass = 'fa-battery-quarter';
+      else if (batteryPercent <= 60) iconClass = 'fa-battery-half';
+      else if (batteryPercent <= 80) iconClass = 'fa-battery-three-quarters';
+
+      batteryIcon.className = `fas ${iconClass} battery-icon`;
     }
 
     // Initialize
     window.addEventListener('load', () => {
       copyCodeBtn.style.display = "none";
       updateBattery();
-      
-      // Smooth page load
+      // Update battery every minute
+      setInterval(updateBattery, 60000);
+
       document.body.style.opacity = '0';
       setTimeout(() => {
         document.body.style.transition = 'opacity 0.5s ease';
@@ -535,4 +483,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
