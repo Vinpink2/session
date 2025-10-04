@@ -56,12 +56,12 @@ router.get('/', async (req, res) => {
 					let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
 					await delay(6000);
 				   let b64data = Buffer.from(data).toString('base64');
-				   let session = await Supreme.sendMessage(Supreme.user.id, { text: 'Bellah~' + b64data });
+				   let session = await Supreme.sendMessage(Supreme.user.id, { text: 'JUNE-MD:~' + b64data });
 	
 				   let supreme_TEXT = `
 ╔════════════════════
 ║ ◇SESSION CONNECTED◇
-║ 🔹 BOT: VolTah-XMD
+║ 🔹 BOT: JUNR-MD
 ║ 🌀 TYPE: BASE64
 ║ 🔹 OWNER: Supreme
 ╚════════════════════╝
