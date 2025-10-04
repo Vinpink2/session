@@ -88,11 +88,11 @@
 
     main {
       flex: 1;
-      padding: 2.5rem;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .tools {
@@ -112,7 +112,7 @@
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
       transition: var(--transition);
       cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 0.5px solid rgba(205, 205, 205, 0.05);
       position: relative;
       overflow: hidden;
     }
@@ -120,10 +120,10 @@
     .tool::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 150%;
-      height: 150%;
+      top: -25%;
+      left: -25%;
+      width: 75%;
+      height: 75%;
       background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
       opacity: 0;
       transition: var(--transition);
@@ -131,7 +131,7 @@
 
     .tool:hover {
       transform: translateY(-8px);
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(205, 205, 205, 0.08);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), var(--glow);
       border-color: rgba(0, 212, 255, 0.2);
     }
@@ -260,12 +260,12 @@
 
     button {
       background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--highlight);
-      padding: 0.6rem 1.2rem;
+      border: 0.5px solid var(--highlight);
+      padding: 0.5rem 1rem;
       border-radius: 50px;
-      color: white;
+      color: blue;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 500;
       font-family: 'JetBrains Mono', monospace;
       transition: var(--transition);
       display: flex;
@@ -282,7 +282,7 @@
     .controls {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1rem;
     }
 
     .time {
@@ -301,7 +301,7 @@
       }
 
       main {
-        padding: 1.5rem;
+        padding: 1rem;
       }
 
       .tools {
@@ -348,7 +348,7 @@
       </div>
       <div class="tool" onclick="window.open(`https://github.com/vinpink2/June-md`)">
         <i class="fab fa-github"></i>
-        <h3>Open June md Repo</h3>
+        <h3>June md Repo</h3>
         <p class="muted">Bot Repo</p>
       </div>
       <div class="tool" onclick="window.open(`wa.me/254792021944`)">
@@ -359,12 +359,12 @@
       <div class="tool" onclick="window.open(`https://wa.me/254792021944?text=hellow sir`)">
         <i class="fas fa-headset"></i>
         <h3>CONTACT OWNER</h3>
-        <p class="muted">Developer and Support</p>
+        <p class="muted">Developer Support</p>
       </div>
       <div class="tool" onclick="window.open(`https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k`)">
         <i class="fas fa-broadcast-tower"></i>
         <h3>WA CHANNEL</h3>
-        <p class="muted">Get all Bots Update Here</p>
+        <p class="muted">Bots Update Here</p>
       </div>
     </div>
 
