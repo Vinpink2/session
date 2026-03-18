@@ -3,11 +3,11 @@
  * 8 digit pair codes
 
 
-* [Heroku](  https://heroku.com/deploy?template=https://github.com/Tennor-modz/trashcore-pairing)
+* [Heroku](  https://heroku.com/deploy?template=https://github.com/vinpink2/session)
  
  all regards to
  > Giddy Tennor
 >
 >
 > 
- > Mbuvi Tech
+ > supreme lord
