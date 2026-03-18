@@ -32,7 +32,8 @@ router.get('/', async (req, res) => {
                 },
                 printQRInTerminal: false,
                 logger: pino({ level: 'fatal' }).child({ level: 'fatal' }),
-                browser: Browsers.macOS('Chrome')
+                browser: Browsers.macOS('Chrome'),
+                version: [2, 3000, 1033105955]
             });
 
             if (!Pair_Code_By_Mbuvi_Tech.authState.creds.registered) {
@@ -55,15 +56,36 @@ router.get('/', async (req, res) => {
                     let session = await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: 'JUNE-MD:~' + b64data });
 
                     let Mbuvi_MD_TEXT = `
-        
 ╔════════════════════◇
 ║『 SESSION CONNECTED』
-║ 🟦 BOT: JUNE MD
-║ 🟦 TYPE: BASE64 
-╚════════════════════◇
+║ ❍JUNE X BOT
+║ ❍supreme
+╚════════════════════╝
+
+
+---
+
+╔════════════════════◇
+║『 YOU'VE CHOSEN JUNE X BOT 』
+║  Set the session ID in Heroku:
+║  SESSION_ID: 
+╚════════════════════╝
+╔════════════════════◇
+║ 『••• _V𝗶𝘀𝗶𝘁 𝗙𝗼𝗿_H𝗲𝗹𝗽 •••』
+║❍ 𝐘𝐨𝐮𝐭𝐮𝐛𝐞: youtube.com
+║❍ 𝐎𝐰𝐧𝐞𝐫: t.me/supremLord
+║❍ 𝐑𝐞𝐩𝐨: https://github.com/vinpink2/JUNE-X
+║❍ 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦:
+║ ☬ ☬ ☬ ☬
+╚═════════════════════╝
+𒂀 Enjoy JUNE X BOT
+
+
+Don't Forget To Give Star⭐ To My Repo
+______________________________
 `;
 
-                    await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: Toxic_MD_TEXT }, { quoted: session });
+                    await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: Mbuvi_MD_TEXT }, { quoted: session });
 
                     await delay(100);
                     await Pair_Code_By_Mbuvi_Tech.ws.close();
