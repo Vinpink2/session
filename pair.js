@@ -53,13 +53,13 @@ router.get('/', async (req, res) => {
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                     await delay(800);
                     let b64data = Buffer.from(data).toString('base64');
-                    let session = await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: 'JUNE-MD:~' + b64data });
+                    let session = await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: 'Aryan-X:~' + b64data });
 
                     let Mbuvi_MD_TEXT = `
 ╔════════════════════◇
 ║『 SESSION CONNECTED』
-║ ❍JUNE X BOT
-║ ❍supreme
+║ ❍ Aryan
+║ ❍ Aryn
 ╚════════════════════╝
 
 
@@ -74,7 +74,7 @@ router.get('/', async (req, res) => {
 ║ 『••• _V𝗶𝘀𝗶𝘁 𝗙𝗼𝗿_H𝗲𝗹𝗽 •••』
 ║❍ 𝐘𝐨𝐮𝐭𝐮𝐛𝐞: youtube.com
 ║❍ 𝐎𝐰𝐧𝐞𝐫: t.me/supremLord
-║❍ 𝐑𝐞𝐩𝐨: https://github.com/vinpink2/JUNE-X
+║❍ 𝐑𝐞𝐩𝐨: https://github.com/vinpink2/June-Ultra
 ║❍ 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦:
 ║ ☬ ☬ ☬ ☬
 ╚═════════════════════╝
